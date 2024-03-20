@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Eleitor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long candidatoId;
+    private Long eleitorId;
     private String nome;
     private String cpf;
     private Boolean votou;
@@ -25,22 +25,22 @@ public class Eleitor {
         this.votou = votou;
     }
 
-    public void votar(Candidato candidato) {
+   /* public void votar(Candidato candidato) {
         //construir a classe candidato para receber no parametro...
         if (!votou) {
             votou = true;
         } else {
             System.out.println("O Eleitor " + nome + "já votou");
         }
+    } */
+
+
+    public Long getEleitorId() {
+        return eleitorId;
     }
 
-
-    public Long getCandidatoId() {
-        return candidatoId;
-    }
-
-    public void setCandidatoId(Long candidatoId) {
-        this.candidatoId = candidatoId;
+    public void setEleitorId(Long eleitorId) {
+        this.eleitorId = eleitorId;
     }
 
     public String getNome() {
@@ -72,18 +72,18 @@ public class Eleitor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Eleitor eleitor = (Eleitor) o;
-        return Objects.equals(candidatoId, eleitor.candidatoId);
+        return Objects.equals(eleitorId, eleitor.eleitorId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(candidatoId);
+        return Objects.hash(eleitorId);
     }
 
     @Override
     public String toString() {
         return "Eleitor{" +
-                "candidatoId=" + candidatoId +
+                "candidatoId=" + eleitorId +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", votou=" + votou +

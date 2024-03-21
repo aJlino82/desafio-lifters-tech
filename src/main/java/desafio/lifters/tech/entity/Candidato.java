@@ -1,9 +1,7 @@
 package desafio.lifters.tech.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -16,13 +14,19 @@ public class Candidato {
     private Integer numero;
     private String caminhoFoto;
 
+    @ManyToOne
+    @JoinColumn(name = "cargo_id")
+    @JsonBackReference
+    private Cargo cargo;
+
     public Candidato() {
     }
 
-    public Candidato(String nome, Integer numero, String caminhoFoto) {
+    public Candidato(String nome, Integer numero, String caminhoFoto, Cargo cargo) {
         this.nome = nome;
         this.numero = numero;
         this.caminhoFoto = caminhoFoto;
+        this.cargo = cargo;
     }
 
     public Long getCandidatoId() {
@@ -57,6 +61,14 @@ public class Candidato {
         this.caminhoFoto = caminhoFoto;
     }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +89,7 @@ public class Candidato {
                 ", nome='" + nome + '\'' +
                 ", numero=" + numero +
                 ", caminhoFoto='" + caminhoFoto + '\'' +
+                ", cargo=" + cargo +
                 '}';
     }
 }

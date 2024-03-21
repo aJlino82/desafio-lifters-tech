@@ -2,7 +2,6 @@ package desafio.lifters.tech.controller;
 
 import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Eleitor;
-import desafio.lifters.tech.entity.SessaoVotacao;
 import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.entity.dto.EleitorDto;
 import desafio.lifters.tech.service.CandidatoService;
@@ -66,18 +65,13 @@ public class EleitorController {
     }
 
     @PostMapping("/{id}/votar")
-    public ResponseEntity<Voto> votar(@PathVariable("id") Long id, SessaoVotacao sessaoVotacao) {
-        if (sessaoAberta(sessaoVotacao)) {
-            Candidato candidato = candidatoService.consultarPorId(id);
-            Voto voto = new Voto();
-            voto.setCandidato(candidato);
-            voto.setCargo(candidato.getCargo().getDescricao());
-            return ResponseEntity.ok(votoService.votar(voto));
-        }
-        throw new RuntimeException("Sessão ainda não foi aberta!");
+    public ResponseEntity<Voto> votar(@PathVariable("id") Long id) {
+        Candidato candidato = candidatoService.consultarPorId(id);
+        Voto voto = new Voto();
+        voto.setCandidato(candidato);
+        voto.setCargo(candidato.getCargo().getDescricao());
+        return ResponseEntity.ok(votoService.votar(voto));
+
     }
 
-    public Boolean sessaoAberta(SessaoVotacao sessaoVotacao) {
-        return sessaoVotacao.getSessaoAberta();
-    }
 }

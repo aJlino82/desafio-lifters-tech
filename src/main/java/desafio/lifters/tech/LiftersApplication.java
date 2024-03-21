@@ -1,12 +1,20 @@
 package desafio.lifters.tech;
 
+import desafio.lifters.tech.entity.*;
+import desafio.lifters.tech.repositories.CandidatoRepository;
+import desafio.lifters.tech.repositories.CargoRepository;
+import desafio.lifters.tech.repositories.EleitorRepository;
+import desafio.lifters.tech.service.BoletimService;
+import desafio.lifters.tech.service.SessaoService;
+import desafio.lifters.tech.service.VotoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LiftersApplication implements CommandLineRunner {
-   /* @Autowired
+    @Autowired
     EleitorRepository eleitorRepository;
     @Autowired
     CargoRepository cargoRepository;
@@ -17,7 +25,7 @@ public class LiftersApplication implements CommandLineRunner {
     @Autowired
     BoletimService boletimService;
     @Autowired
-    SessaoService sessaoService;*/
+    SessaoService sessaoService;
 
     public static void main(String[] args) {
         SpringApplication.run(LiftersApplication.class, args);
@@ -26,7 +34,7 @@ public class LiftersApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-      /*  //mock cargo
+        //mock cargo
         Cargo cargo = new Cargo(1L, "Presidente");
         cargoRepository.save(cargo);
         Cargo cargo2 = new Cargo(2L, "Senador");
@@ -77,7 +85,7 @@ public class LiftersApplication implements CommandLineRunner {
         System.out.println("O total de votos para Presidente foi " + boletimService.toralVotosPorCargo(cargo.getDescricao()));
         System.out.println("");
         System.out.println("O total de votos para Senador foi " + boletimService.toralVotosPorCargo(cargo2.getDescricao()));
-*/
+
 
     }
 

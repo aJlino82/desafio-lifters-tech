@@ -4,6 +4,7 @@ import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.service.BoletimService;
 import desafio.lifters.tech.service.CandidatoService;
+import desafio.lifters.tech.service.VotoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,12 @@ public class CandidatoController {
 
     private final CandidatoService candidatoService;
     private final BoletimService boletimService;
+    private final VotoService votoService;
 
-    public CandidatoController(CandidatoService candidatoService, BoletimService boletimService) {
+    public CandidatoController(CandidatoService candidatoService, BoletimService boletimService, VotoService votoService) {
         this.candidatoService = candidatoService;
         this.boletimService = boletimService;
+        this.votoService = votoService;
     }
 
     @PostMapping
@@ -57,6 +60,12 @@ public class CandidatoController {
         List<Voto> votosList = boletimService.buscaVotoPorCandidato(candidato);
         Integer totalVotosPorCandidato = votosList.size();
         return ResponseEntity.ok(totalVotosPorCandidato);
+    }
+
+    @PatchMapping("/total/{id}")
+    public ResponseEntity<Integer> totalVotosPorCandidato(@PathVariable("id") Long id) {
+        Candidato candidato = candidatoService.consultarPorId(id);
+        return ResponseEntity.ok(votoService.totalVotosPorCandidato(candidato));
     }
 
 }

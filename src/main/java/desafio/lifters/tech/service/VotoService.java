@@ -1,5 +1,6 @@
 package desafio.lifters.tech.service;
 
+import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.repositories.VotoRepository;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,11 @@ public class VotoService {
 
     public Voto votar(Voto voto) {
         return votoRepository.save(voto);
+    }
+
+    public Integer totalVotosPorCandidato(Candidato candidato) {
+        Integer total = votoRepository.totalVotosPorCandidato(candidato);
+        return total;
     }
 
 }

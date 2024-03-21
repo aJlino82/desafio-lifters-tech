@@ -30,6 +30,7 @@ public class BoletimController {
         boletim.setCargo(vencedor.getCargo().getDescricao());
         boletim.setTotalVotos(totaldeVotos);
         boletim.setVencedor(vencedor.getNome());
+        System.out.println(boletim);
 
         return ResponseEntity.ok(boletimService.salva(boletim)).getBody();
     }

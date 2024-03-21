@@ -4,9 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +12,6 @@ public class Boletim {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long boletimId;
-    @CreationTimestamp
-    private Date dataRelatorio;
     private String cargo;
     private Integer totalVotos;
     private String vencedor;
@@ -23,9 +19,8 @@ public class Boletim {
     public Boletim() {
     }
 
-    public Boletim(Long boletimId, Date dataRelatorio, String cargo, Integer totalVotos, String vencedor) {
+    public Boletim(Long boletimId, String cargo, Integer totalVotos, String vencedor) {
         this.boletimId = boletimId;
-        this.dataRelatorio = dataRelatorio;
         this.cargo = cargo;
         this.totalVotos = totalVotos;
         this.vencedor = vencedor;
@@ -37,14 +32,6 @@ public class Boletim {
 
     public void setBoletimId(Long boletimId) {
         this.boletimId = boletimId;
-    }
-
-    public Date getDataRelatorio() {
-        return dataRelatorio;
-    }
-
-    public void setDataRelatorio(Date dataRelatorio) {
-        this.dataRelatorio = dataRelatorio;
     }
 
     public String getCargo() {
@@ -68,7 +55,7 @@ public class Boletim {
     }
 
     public void setVencedor(String vencedor) {
-        vencedor = vencedor;
+        this.vencedor = vencedor;
     }
 
     @Override
@@ -88,7 +75,6 @@ public class Boletim {
     public String toString() {
         return "Boletim{" +
                 "boletimId=" + boletimId +
-                ", dataRelatorio=" + dataRelatorio +
                 ", cargo='" + cargo + '\'' +
                 ", totalVotos=" + totalVotos +
                 ", vencedor='" + vencedor + '\'' +

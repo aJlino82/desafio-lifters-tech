@@ -4,6 +4,8 @@ import desafio.lifters.tech.entity.SessaoVotacao;
 import desafio.lifters.tech.repositories.SessaoVotacaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SessaoService {
 
@@ -13,17 +15,12 @@ public class SessaoService {
         this.sessaoVotacaoRepository = sessaoVotacaoRepository;
     }
 
-    public SessaoVotacao criaSessao(SessaoVotacao sessaoVotacao) {
+    public SessaoVotacao salva(SessaoVotacao sessaoVotacao) {
+        sessaoVotacao.setSessaoId(1L);
         return sessaoVotacaoRepository.save(sessaoVotacao);
     }
 
-    public SessaoVotacao abreSessao(SessaoVotacao sessaoVotacao) {
-        sessaoVotacao.abrirSessao();
-        return sessaoVotacao;
-    }
-
-    public SessaoVotacao fechaSessao(SessaoVotacao sessaoVotacao) {
-        sessaoVotacao.encerrarSessao();
-        return sessaoVotacao;
+    public List<SessaoVotacao> listaTodos() {
+        return sessaoVotacaoRepository.findAll();
     }
 }

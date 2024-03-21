@@ -2,10 +2,12 @@ package desafio.lifters.tech.controller;
 
 import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Eleitor;
+import desafio.lifters.tech.entity.SessaoVotacao;
 import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.entity.dto.EleitorDto;
 import desafio.lifters.tech.service.CandidatoService;
 import desafio.lifters.tech.service.EleitorService;
+import desafio.lifters.tech.service.SessaoService;
 import desafio.lifters.tech.service.VotoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,13 @@ public class EleitorController {
 
     private final EleitorService eleitorService;
     private final CandidatoService candidatoService;
+    private final SessaoService sessaoService;
     private final VotoService votoService;
 
-    public EleitorController(EleitorService eleitorService, CandidatoService candidatoService, VotoService votoService) {
+    public EleitorController(EleitorService eleitorService, CandidatoService candidatoService, SessaoService sessaoService, VotoService votoService) {
         this.eleitorService = eleitorService;
         this.candidatoService = candidatoService;
+        this.sessaoService = sessaoService;
         this.votoService = votoService;
     }
 
@@ -62,11 +66,18 @@ public class EleitorController {
     }
 
     @PostMapping("/{id}/votar")
-    public ResponseEntity<Voto> votar(@PathVariable("id") Long id) {
-        Candidato candidato = candidatoService.consultarPorId(id);
-        Voto voto = new Voto();
-        voto.setCandidato(candidato);
-        voto.setCargo(candidato.getCargo().getDescricao());
-        return ResponseEntity.ok(votoService.votar(voto));
+    public ResponseEntity<Voto> votar(@PathVariable("id") Long id, SessaoVotacao sessaoVotacao) {
+        if (sessaoAberta(sessaoVotacao)) {
+            Candidato candidato = candidatoService.consultarPorId(id);
+            Voto voto = new Voto();
+            voto.setCandidato(candidato);
+            voto.setCargo(candidato.getCargo().getDescricao());
+            return ResponseEntity.ok(votoService.votar(voto));
+        }
+        throw new RuntimeException("Sessão ainda não foi aberta!");
+    }
+
+    public Boolean sessaoAberta(SessaoVotacao sessaoVotacao) {
+        return sessaoVotacao.getSessaoAberta();
     }
 }

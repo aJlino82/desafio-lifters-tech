@@ -1,31 +1,23 @@
 package desafio.lifters.tech;
 
-import desafio.lifters.tech.entity.*;
-import desafio.lifters.tech.repositories.CandidatoRepository;
-import desafio.lifters.tech.repositories.CargoRepository;
-import desafio.lifters.tech.repositories.EleitorRepository;
-import desafio.lifters.tech.repositories.VotoRepository;
-import desafio.lifters.tech.service.BoletimService;
-import desafio.lifters.tech.service.SessaoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LiftersApplication implements CommandLineRunner {
-    @Autowired
+   /* @Autowired
     EleitorRepository eleitorRepository;
     @Autowired
     CargoRepository cargoRepository;
     @Autowired
     CandidatoRepository candidatoRepository;
     @Autowired
-    VotoRepository votoRepository;
+    VotoService votoService;
     @Autowired
     BoletimService boletimService;
     @Autowired
-    SessaoService sessaoService;
+    SessaoService sessaoService;*/
 
     public static void main(String[] args) {
         SpringApplication.run(LiftersApplication.class, args);
@@ -34,14 +26,14 @@ public class LiftersApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //mock cargo
+      /*  //mock cargo
         Cargo cargo = new Cargo(1L, "Presidente");
         cargoRepository.save(cargo);
         Cargo cargo2 = new Cargo(2L, "Senador");
         cargoRepository.save(cargo2);
 
         SessaoVotacao sessaoVotacao = new SessaoVotacao(null, false);
-        sessaoService.criaSessao(sessaoVotacao);
+        sessaoService.salva(sessaoVotacao);
 
         Cargo presidente = cargoRepository.findById(1L).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
         Cargo senador = cargoRepository.findById(2L).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
@@ -56,38 +48,36 @@ public class LiftersApplication implements CommandLineRunner {
         Eleitor eleitor4 = new Eleitor("Mário", "321.321.321-32", true);
         eleitorRepository.save(eleitor4);
 
+
         //Mock candidato
-        Candidato candidato = new Candidato(null, "Zé Colmeia", "333.333.333-33", 20, "c/votacao/fotos/zecolmeia.jpg", 27, presidente);
+        Candidato candidato = new Candidato(null, "Zé Colmeia", "333.333.333-33", 10, "c/votacao/fotos/zecolmeia.jpg", 0, presidente);
         candidatoRepository.save(candidato);
-        Candidato candidato2 = new Candidato(null, "Catatau", "444.444.444-44", 10, "c/votacao/fotos/catatau.jpg", 22, presidente);
+        Candidato candidato2 = new Candidato(null, "Catatau", "444.444.444-44", 20, "c/votacao/fotos/catatau.jpg", 0, presidente);
         candidatoRepository.save(candidato2);
-        Candidato candidato3 = new Candidato(null, "Dom pixote", "555.555.555.55", 30, "c/votacao/fotos/dpixote.jpg", 23, senador);
+        Candidato candidato3 = new Candidato(null, "Dom pixote", "555.555.555.55", 30, "c/votacao/fotos/dpixote.jpg", 0, senador);
         candidatoRepository.save(candidato3);
 
         //Mock voto
-        Voto voto = new Voto(null, null, candidato, candidato.getCargo().getDescricao());
-        votoRepository.save(voto);
-        Voto voto1 = new Voto(null, null, candidato, candidato.getCargo().getDescricao());
-        votoRepository.save(voto1);
-        Voto voto2 = new Voto(null, null, candidato2, candidato2.getCargo().getDescricao());
-        votoRepository.save(voto2);
-        Voto voto3 = new Voto(null, null, candidato3, candidato3.getCargo().getDescricao());
-        votoRepository.save(voto3);
-        Voto voto4 = new Voto(null, null, candidato3, candidato3.getCargo().getDescricao());
-        votoRepository.save(voto4);
+        Voto voto = new Voto(null, candidato, candidato.getCargo().getDescricao());
+        votoService.votar(voto);
+        Voto voto1 = new Voto(null, candidato, candidato.getCargo().getDescricao());
+        votoService.votar(voto1);
+        Voto voto2 = new Voto(null, candidato2, candidato2.getCargo().getDescricao());
+        votoService.votar(voto2);
+        Voto voto3 = new Voto(null, candidato3, candidato3.getCargo().getDescricao());
+        votoService.votar(voto3);
+        Voto voto4 = new Voto(null, candidato3, candidato3.getCargo().getDescricao());
+        votoService.votar(voto4);
 
         Integer totaldeVotos = boletimService.totalVotos();
         Candidato vencedor = boletimService.buscaVencedor();
 
 
-        Boletim boletim = new Boletim(null, null, "Presidente", totaldeVotos, vencedor.getNome());
-        boletimService.salva(boletim);
-
         System.out.println("");
         System.out.println("O total de votos para Presidente foi " + boletimService.toralVotosPorCargo(cargo.getDescricao()));
         System.out.println("");
         System.out.println("O total de votos para Senador foi " + boletimService.toralVotosPorCargo(cargo2.getDescricao()));
-
+*/
 
     }
 

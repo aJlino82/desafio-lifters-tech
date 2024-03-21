@@ -34,6 +34,11 @@ public class CargoController {
         return ResponseEntity.ok(cargoService.consultarPorId(id));
     }
 
+    @PatchMapping
+    public ResponseEntity<Cargo> atualizar(@RequestBody Cargo cargo) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cargoService.salva(cargo));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> apagar(@PathVariable("id") Long id) {
         cargoService.deleteById(id);

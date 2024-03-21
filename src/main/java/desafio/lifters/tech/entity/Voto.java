@@ -1,9 +1,7 @@
 package desafio.lifters.tech.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.Instant;
 import java.util.Objects;
 
 @Entity
@@ -11,8 +9,6 @@ public class Voto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long votoId;
-    @CreationTimestamp
-    private Instant diaHoraVoto;
     private String cargo;
     @ManyToOne
     @JoinColumn(name = "candidato_id")
@@ -21,9 +17,8 @@ public class Voto {
     public Voto() {
     }
 
-    public Voto(Long votoId, Instant diaHoraVoto, Candidato candidato, String cargo) {
+    public Voto(Long votoId, Candidato candidato, String cargo) {
         this.votoId = votoId;
-        this.diaHoraVoto = diaHoraVoto;
         this.candidato = candidato;
         this.cargo = cargo;
     }
@@ -34,14 +29,6 @@ public class Voto {
 
     public void setVotoId(Long votoId) {
         this.votoId = votoId;
-    }
-
-    public Instant getDiaHoraVoto() {
-        return diaHoraVoto;
-    }
-
-    public void setDiaHoraVoto(Instant diaHoraVoto) {
-        this.diaHoraVoto = diaHoraVoto;
     }
 
     public Candidato getCandidato() {
@@ -77,7 +64,6 @@ public class Voto {
     public String toString() {
         return "Voto{" +
                 "votoId=" + votoId +
-                ", diaHoraVoto=" + diaHoraVoto +
                 ", candidato=" + candidato +
                 ", cargo=" + cargo +
                 '}';

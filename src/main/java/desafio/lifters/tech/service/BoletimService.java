@@ -37,11 +37,6 @@ public class BoletimService {
         return total;
     }
 
-    public Integer totalVotosPorCandidato(Candidato candidato) {
-        Integer total = votoRepository.totalVotosPorCandidato(candidato);
-        return total;
-    }
-
     public Integer toralVotosPorCargo(String cargo) {
         Integer total = votoRepository.totalVotosPorCargo(cargo);
         return total;

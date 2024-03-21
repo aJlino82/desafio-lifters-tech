@@ -1,9 +1,6 @@
 package desafio.lifters.tech.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -13,6 +10,7 @@ public class Eleitor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eleitorId;
     private String nome;
+    @Column(unique = true)
     private String cpf;
     private Boolean votou;
 

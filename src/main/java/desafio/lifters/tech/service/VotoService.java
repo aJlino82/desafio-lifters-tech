@@ -13,7 +13,8 @@ public class VotoService {
         this.votoRepository = votoRepository;
     }
 
-    public Voto save(Voto voto) {
+    public Voto votar(Voto voto) {
         return votoRepository.save(voto);
     }
+
 }

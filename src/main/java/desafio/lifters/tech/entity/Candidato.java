@@ -10,6 +10,8 @@ public class Candidato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long candidatoId;
+    @Column(unique = true)
+    private String cpf;
     private String nome;
     private Integer numero;
     private String caminhoFoto;
@@ -19,11 +21,16 @@ public class Candidato {
     @JsonBackReference
     private Cargo cargo;
 
+    public String getCpf() {
+        return cpf;
+    }
+
     public Candidato() {
     }
 
-    public Candidato(String nome, Integer numero, String caminhoFoto, Cargo cargo) {
+    public Candidato(String nome, String cpf, Integer numero, String caminhoFoto, Cargo cargo) {
         this.nome = nome;
+        this.cpf = cpf;
         this.numero = numero;
         this.caminhoFoto = caminhoFoto;
         this.cargo = cargo;
@@ -43,6 +50,10 @@ public class Candidato {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Integer getNumero() {

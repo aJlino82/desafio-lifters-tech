@@ -1,9 +1,6 @@
 package desafio.lifters.tech.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
@@ -16,17 +13,21 @@ public class Voto {
     private Long votoId;
     @CreationTimestamp
     private Instant diaHoraVoto;
-    private Integer numeroCandidato;
-    private String cargoCandidato;
+
+    private String cargo;
+
+    @ManyToOne
+    @JoinColumn(name = "candidato_id")
+    private Candidato candidato;
 
     public Voto() {
     }
 
-    public Voto(Long votoId, Instant diaHoraVoto, Integer numeroCandidato, String cargoCandidato) {
+    public Voto(Long votoId, Instant diaHoraVoto, Candidato candidato, String cargo) {
         this.votoId = votoId;
         this.diaHoraVoto = diaHoraVoto;
-        this.numeroCandidato = numeroCandidato;
-        this.cargoCandidato = cargoCandidato;
+        this.candidato = candidato;
+        this.cargo = cargo;
     }
 
     public Long getVotoId() {
@@ -45,20 +46,20 @@ public class Voto {
         this.diaHoraVoto = diaHoraVoto;
     }
 
-    public Integer getNumeroCandidato() {
-        return numeroCandidato;
+    public Candidato getCandidato() {
+        return candidato;
     }
 
-    public void setNumeroCandidato(Integer numeroCandidato) {
-        this.numeroCandidato = numeroCandidato;
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
     }
 
-    public String getCargoCandidato() {
-        return cargoCandidato;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setCargoCandidato(String cargoCandidato) {
-        this.cargoCandidato = cargoCandidato;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     @Override
@@ -79,8 +80,8 @@ public class Voto {
         return "Voto{" +
                 "votoId=" + votoId +
                 ", diaHoraVoto=" + diaHoraVoto +
-                ", numeroCandidato=" + numeroCandidato +
-                ", cargoCandidato='" + cargoCandidato + '\'' +
+                ", candidato=" + candidato +
+                ", cargo=" + cargo +
                 '}';
     }
 }

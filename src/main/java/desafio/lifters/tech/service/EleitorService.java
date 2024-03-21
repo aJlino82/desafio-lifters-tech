@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class EleitorService {
-
     private final EleitorRepository eleitorRepository;
 
     public EleitorService(EleitorRepository eleitorRepository) {
@@ -47,4 +46,5 @@ public class EleitorService {
     public void deleteById(Long id) {
         eleitorRepository.deleteById(id);
     }
+
 }

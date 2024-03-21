@@ -49,6 +49,7 @@ public class Cargo {
         this.candidatos = candidatos;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

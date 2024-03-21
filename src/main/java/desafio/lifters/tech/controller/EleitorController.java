@@ -1,8 +1,12 @@
 package desafio.lifters.tech.controller;
 
+import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Eleitor;
+import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.entity.dto.EleitorDto;
+import desafio.lifters.tech.service.CandidatoService;
 import desafio.lifters.tech.service.EleitorService;
+import desafio.lifters.tech.service.VotoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +18,13 @@ import java.util.List;
 public class EleitorController {
 
     private final EleitorService eleitorService;
+    private final CandidatoService candidatoService;
+    private final VotoService votoService;
 
-    public EleitorController(EleitorService eleitorService) {
+    public EleitorController(EleitorService eleitorService, CandidatoService candidatoService, VotoService votoService) {
         this.eleitorService = eleitorService;
+        this.candidatoService = candidatoService;
+        this.votoService = votoService;
     }
 
     @PostMapping
@@ -51,5 +59,14 @@ public class EleitorController {
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<Eleitor>> consultaPorNome(@PathVariable String nome) {
         return ResponseEntity.ok(eleitorService.consultaPorNome(nome));
+    }
+
+    @PostMapping("/{id}/votar")
+    public ResponseEntity<Voto> votar(@PathVariable("id") Long id) {
+        Candidato candidato = candidatoService.consultarPorId(id);
+        Voto voto = new Voto();
+        voto.setCandidato(candidato);
+        voto.setCargo(candidato.getCargo().getDescricao());
+        return ResponseEntity.ok(votoService.votar(voto));
     }
 }

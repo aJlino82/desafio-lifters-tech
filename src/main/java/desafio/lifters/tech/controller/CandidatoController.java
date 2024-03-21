@@ -1,6 +1,8 @@
 package desafio.lifters.tech.controller;
 
 import desafio.lifters.tech.entity.Candidato;
+import desafio.lifters.tech.entity.Voto;
+import desafio.lifters.tech.service.BoletimService;
 import desafio.lifters.tech.service.CandidatoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import java.util.List;
 public class CandidatoController {
 
     private final CandidatoService candidatoService;
+    private final BoletimService boletimService;
 
-    public CandidatoController(CandidatoService candidatoService) {
+    public CandidatoController(CandidatoService candidatoService, BoletimService boletimService) {
         this.candidatoService = candidatoService;
+        this.boletimService = boletimService;
     }
 
     @PostMapping
@@ -45,6 +49,14 @@ public class CandidatoController {
     public ResponseEntity<Void> apagar(@PathVariable("id") Long id) {
         candidatoService.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/total/{id}")
+    public ResponseEntity<Integer> buscaVotosPorCandidatoId(@PathVariable("id") Long id) {
+        Candidato candidato = candidatoService.consultarPorId(id);
+        List<Voto> votosList = boletimService.buscaVotoPorCandidato(candidato);
+        Integer totalVotosPorCandidato = votosList.size();
+        return ResponseEntity.ok(totalVotosPorCandidato);
     }
 
 }

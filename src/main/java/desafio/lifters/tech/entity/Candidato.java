@@ -13,26 +13,26 @@ public class Candidato {
     @Column(unique = true)
     private String cpf;
     private String nome;
+    @Column(unique = true)
     private Integer numero;
     private String caminhoFoto;
+    private Integer totalDeVotos;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     @JsonBackReference
     private Cargo cargo;
 
-    public String getCpf() {
-        return cpf;
-    }
-
     public Candidato() {
     }
 
-    public Candidato(String nome, String cpf, Integer numero, String caminhoFoto, Cargo cargo) {
-        this.nome = nome;
+    public Candidato(Long candidatoId, String nome, String cpf, Integer numero, String caminhoFoto, Integer totalDeVotos, Cargo cargo) {
+        this.candidatoId = candidatoId;
         this.cpf = cpf;
+        this.nome = nome;
         this.numero = numero;
         this.caminhoFoto = caminhoFoto;
+        this.totalDeVotos = totalDeVotos;
         this.cargo = cargo;
     }
 
@@ -44,16 +44,20 @@ public class Candidato {
         this.candidatoId = candidatoId;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public Integer getNumero() {
@@ -70,6 +74,14 @@ public class Candidato {
 
     public void setCaminhoFoto(String caminhoFoto) {
         this.caminhoFoto = caminhoFoto;
+    }
+
+    public Integer getTotalDeVotos() {
+        return totalDeVotos;
+    }
+
+    public void setTotalDeVotos(Integer totalDeVotos) {
+        this.totalDeVotos = totalDeVotos;
     }
 
     public Cargo getCargo() {
@@ -97,9 +109,11 @@ public class Candidato {
     public String toString() {
         return "Candidato{" +
                 "candidatoId=" + candidatoId +
+                ", cpf='" + cpf + '\'' +
                 ", nome='" + nome + '\'' +
                 ", numero=" + numero +
                 ", caminhoFoto='" + caminhoFoto + '\'' +
+                ", totalDeVotos=" + totalDeVotos +
                 ", cargo=" + cargo +
                 '}';
     }

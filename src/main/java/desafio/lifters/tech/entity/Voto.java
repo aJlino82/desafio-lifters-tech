@@ -13,9 +13,7 @@ public class Voto {
     private Long votoId;
     @CreationTimestamp
     private Instant diaHoraVoto;
-
     private String cargo;
-
     @ManyToOne
     @JoinColumn(name = "candidato_id")
     private Candidato candidato;

@@ -23,16 +23,6 @@ public class Eleitor {
         this.votou = votou;
     }
 
-    public void votar(Candidato candidato) {
-        //construir a classe candidato para receber no parametro...
-        if (!votou) {
-            votou = true;
-        } else {
-            System.out.println("O Eleitor " + nome + "já votou");
-        }
-    }
-
-
     public Long getEleitorId() {
         return eleitorId;
     }

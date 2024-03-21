@@ -39,4 +39,5 @@ public class CandidatoService {
         candidatoRepository.deleteById(id);
     }
 
+
 }

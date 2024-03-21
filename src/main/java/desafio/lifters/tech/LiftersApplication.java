@@ -6,6 +6,7 @@ import desafio.lifters.tech.repositories.CargoRepository;
 import desafio.lifters.tech.repositories.EleitorRepository;
 import desafio.lifters.tech.repositories.VotoRepository;
 import desafio.lifters.tech.service.BoletimService;
+import desafio.lifters.tech.service.SessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,8 @@ public class LiftersApplication implements CommandLineRunner {
     VotoRepository votoRepository;
     @Autowired
     BoletimService boletimService;
+    @Autowired
+    SessaoService sessaoService;
 
     public static void main(String[] args) {
         SpringApplication.run(LiftersApplication.class, args);
@@ -36,6 +39,9 @@ public class LiftersApplication implements CommandLineRunner {
         cargoRepository.save(cargo);
         Cargo cargo2 = new Cargo(2L, "Senador");
         cargoRepository.save(cargo2);
+
+        SessaoVotacao sessaoVotacao = new SessaoVotacao(null, false);
+        sessaoService.criaSessao(sessaoVotacao);
 
         Cargo presidente = cargoRepository.findById(1L).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
         Cargo senador = cargoRepository.findById(2L).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
@@ -51,11 +57,11 @@ public class LiftersApplication implements CommandLineRunner {
         eleitorRepository.save(eleitor4);
 
         //Mock candidato
-        Candidato candidato = new Candidato("Zé Colmeia", "333.333.333-33", 20, "c/votacao/fotos/zecolmeia.jpg", presidente);
+        Candidato candidato = new Candidato(null, "Zé Colmeia", "333.333.333-33", 20, "c/votacao/fotos/zecolmeia.jpg", 27, presidente);
         candidatoRepository.save(candidato);
-        Candidato candidato2 = new Candidato("Catatau", "444.444.444-44", 10, "c/votacao/fotos/catatau.jpg", presidente);
+        Candidato candidato2 = new Candidato(null, "Catatau", "444.444.444-44", 10, "c/votacao/fotos/catatau.jpg", 22, presidente);
         candidatoRepository.save(candidato2);
-        Candidato candidato3 = new Candidato("Dom pixote", "555.555.555.55", 30, "c/votacao/fotos/dpixote.jpg", senador);
+        Candidato candidato3 = new Candidato(null, "Dom pixote", "555.555.555.55", 30, "c/votacao/fotos/dpixote.jpg", 23, senador);
         candidatoRepository.save(candidato3);
 
         //Mock voto

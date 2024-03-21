@@ -5,17 +5,20 @@ import desafio.lifters.tech.entity.Candidato;
 import desafio.lifters.tech.entity.Voto;
 import desafio.lifters.tech.repositories.BoletimRepository;
 import desafio.lifters.tech.repositories.VotoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BoletimService {
-    @Autowired
-    BoletimRepository boletimRepository;
-    @Autowired
-    VotoRepository votoRepository;
+    private final BoletimRepository boletimRepository;
+
+    private final VotoRepository votoRepository;
+
+    public BoletimService(BoletimRepository boletimRepository, VotoRepository votoRepository) {
+        this.boletimRepository = boletimRepository;
+        this.votoRepository = votoRepository;
+    }
 
     public Boletim salva(Boletim boletim) {
         return boletimRepository.save(boletim);

@@ -43,4 +43,5 @@ encontrada em http://localhost:8080/swagger-ui.html.
 Obs: os arquivos de variáveis dos bancos não foram adicionadas ao .gitignore intencionalmente.
 
 Este projeto foi desenvolvido como parte do Desafio Lifters Tech.
+Para o desenvolvimento foi utilizada a IDE IntelliJ IDEA. 
 

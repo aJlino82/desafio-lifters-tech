@@ -1,6 +1,7 @@
 ## Desafio Lifters Tech - Desenvolvedor Java
 
 ### Este repositório contém a solução desenvolvida para o Desafio Lifters Tech. Abaixo estão detalhadas as tecnologias utilizadas, bem como as funcionalidades implementadas.
+
 Tecnologias Utilizadas
 
     Java 17 LTS: Linguagem de programação utilizada para o desenvolvimento.
@@ -22,6 +23,11 @@ Tecnologias Utilizadas
     POST /eleitores/{id}/votar: Endpoint para que eleitores realizem seus votos.
     Validações: Foram implementadas validações para evitar a inserção de candidatos e eleitores duplicados no sistema.
 
+### Mocks para Facilitar Testes
+
+    Foram adicionados mocks na classe principal para facilitar os testes durante o desenvolvimento da aplicação. Os mocks simulam o
+    comportamento dos serviços externos, não usei recursos externos para mockar.
+
 ### Como Executar
 
     Certifique-se de ter o Java 17 LTS instalado em sua máquina.
@@ -31,7 +37,10 @@ Tecnologias Utilizadas
 
 ### Documentação da API
 
-A documentação da API pode ser acessada através do Swagger UI, após a execução da aplicação. Por padrão, pode ser encontrada em http://localhost:8080/swagger-ui.html.
+A documentação da API pode ser acessada através do Swagger UI, após a execução da aplicação. Por padrão, pode ser
+encontrada em http://localhost:8080/swagger-ui.html.
+
+Obs: os arquivos de variáveis dos bancos não foram adicionadas ao .gitignore intencionalmente.
 
 Este projeto foi desenvolvido como parte do Desafio Lifters Tech.
 
